@@ -17,18 +17,18 @@ var blogSchema = new mongoose.Schema({
 
 var Blog = mongoose.model("Blog", blogSchema);
 
-Blog.create({
-	title: "Freedom",
-	image: "https://unsplash.com/search/new-port?photo=snRziGMSvcg",
-	body: "Peace in the warm embrace of a setting sun",
+app.get('/', function(req, res) {
+    res.redirect('/blogs');
 });
 
-app.get('/' function(req,res){
-	res.redirect('/blogs');
-});
-
-app.get('/blogs', function(req,res){
-	res.render("index");
+app.get('/blogs', function(req, res) {
+    Blog.find({}, function(err, blogs) {
+        if (err) {
+            console.log("error: " + err);
+        } else {
+            res.render("index", { blogs: blogs });
+        }
+    })
 });
 
 app.listen(3000, function() {
