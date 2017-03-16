@@ -33,18 +33,30 @@ app.get('/blogs', function(req, res) {
 });
 
 // NEW ROUTE
-app.get('/blogs/new',function(req, res){
-	res.render('new');
+app.get('/blogs/new', function(req, res) {
+    res.render('new');
 });
 
 // CREATE ROUTE
-app.post('/blogs',function(req,res){
-    Blog.create(req.body.blog, function(err,newBlog){
-        if(err){
+app.post('/blogs', function(req, res) {
+    Blog.create(req.body.blog, function(err, newBlog) {
+        if (err) {
             // console.log("error: " + err);
             res.render("new"); // go back to new form if we make a mistake
         } else {
             res.redirect("/blogs");
+        }
+    });
+});
+
+// SHOW ROUTE
+app.get('/blogs/:id', function(req, res) {
+    Blog.findById(req.params.id, function(err, foundBlog) {
+        if (err) {
+            console.log(err);
+            res.redirect("/blogs");
+        } else {
+            res.render("show", { blog: foundBlog });
         }
     });
 });
