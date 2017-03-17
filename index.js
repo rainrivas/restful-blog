@@ -87,6 +87,18 @@ app.put('/blogs/:id', function(req, res) {
     });
 });
 
+// DELETE ROUTE
+app.delete("/blogs/:id", function(req, res) {
+    Blog.findByIdAndRemove(req.params.id, function(err) {
+        if (err) {
+            console.log('error: ' + err);
+            res.redirect("/blogs"); // eventaully we can add an error route/view
+        } else {
+            res.redirect("/blogs");
+        }
+    })
+});
+
 app.listen(3000, function() {
     console.log("listening on 3000");
 });
