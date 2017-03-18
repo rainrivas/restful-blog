@@ -1,13 +1,13 @@
 {
-  "name": "blog-app",
+  "name": "restful-blog",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Restful Blog using Semantic UI for front end styling",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Efrain 'Rain' Rivas",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.1",
     "ejs": "^2.5.6",
@@ -15,5 +15,19 @@
     "express-sanitizer": "^1.0.2",
     "method-override": "^2.3.7",
     "mongoose": "^4.8.6"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rainrivas/restful-blog.git"
+  },
+  "keywords": [
+    "REST",
+    "blog",
+    "semantic-ui"
+  ],
+  "bugs": {
+    "url": "https://github.com/rainrivas/restful-blog/issues"
+  },
+  "homepage": "https://github.com/rainrivas/restful-blog#readme"
 }
