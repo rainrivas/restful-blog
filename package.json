@@ -4,7 +4,8 @@
   "description": "A Restful Blog using Semantic UI for front end styling",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "Efrain 'Rain' Rivas",
   "license": "MIT",
