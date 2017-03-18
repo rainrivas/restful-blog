@@ -2,12 +2,14 @@ var express = require('express'),
     app = express(),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
+    expressSanitizer = require('express-sanitizer'),
     methodOverride = require("method-override");
 
 mongoose.connect("mongodb://localhost/restful_blog");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressSanitizer()); // has to go after the body parser
 app.use(methodOverride("_method")); // tell the app to override the method with desired params (we're using for PUT/DELETE)
 
 var blogSchema = new mongoose.Schema({
@@ -41,6 +43,7 @@ app.get('/blogs/new', function(req, res) {
 
 // CREATE ROUTE
 app.post('/blogs', function(req, res) {
+    req.body.blog.body = req.sanitize(req.body.blog.body); // sanitize the input so we remove harmful html such as script tags
     Blog.create(req.body.blog, function(err, newBlog) {
         if (err) {
             // console.log("error: " + err);
@@ -77,6 +80,7 @@ app.get('/blogs/:id/edit', function(req, res) {
 
 // UPDATE ROUTE
 app.put('/blogs/:id', function(req, res) {
+    req.body.blog.body = req.sanitize(req.body.blog.body); // eventually change the sanitizer to be called via middleware
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog) {
         if (err) {
             console.log('error: ' + err);

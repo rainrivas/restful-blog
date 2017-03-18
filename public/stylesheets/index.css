@@ -10,3 +10,7 @@ i.icon {
     /*create inline delete button*/
     display: inline;
 }
+
+.description {
+	padding: 1em 0em;
+}
